@@ -7,13 +7,13 @@
 Diseño de un cuadro de mandos personal para visualización e interacción con un conjunto de datos.
 
 ## Los datos
-Elige un conjunto de datos que te interese: educación, deportes, trabajo, música, econocomía, etc. 
+He cojido datos sobre la NBA desde el año 1950 hasta el 2021, en los cuales tenemos estadisticas de todos los jugadores.
 
 ## Búsqueda de los datos
-Busca una fuente para tus datos. Puedes usar una API de un portal de datos abiertos, un conjunto ya publicado, recopilar personalmente datos por scraping, etc.
+Los datos los he obtenido de una página web Basketball-reference.com.
 
 ## Documentación de los datos
-Documenta los datos que vas a usar y su origen. De dónde los has sacado, fuentes, etc. Describe los campos, los valores, las unidades, etc.
+Podemos filtrar por años, los equipos que queramos y las posiciones que queramos.
 
 ## Prepara tu aplicación.
 La aplicación se llamará `app.py`. Añade un `requirements.txt` con las dependencias de tu aplicación. Ve actualizándolo a medida que vayas añadiendo librerías.
@@ -24,8 +24,6 @@ Carga el conjunto de datos en un dataframe de pandas y realiza un análisis expl
 ## Visualización de los datos
 Prepara visualizaciones diferentes del dataframe en texto (tablas) o gráficas (histogramas, barras, etc.). Puedes usar matplotlib, seaborn, plotly, etc.
 
-## Diseña la interacción que van a tener tus datos
-Qué inputs y outputs tendrán tus datos. 
 
 ## Prepara la aplicación (cuadro de mandos) con Streamlit
 Prepara y prueba la aplicación.
