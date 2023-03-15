@@ -3,6 +3,7 @@ from pathlib import Path
 import streamlit as st
 import pandas as pd
 import base64
+import altair as alt
 
 # For more emojis code https://www.webfx.com/tools/emoji-cheat-sheet/
 st.set_page_config(page_title="NBA Stats", page_icon=":basketball:")
@@ -71,6 +72,18 @@ def filedownload(df):
 
 st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
 
+nba_data = pd.read_csv("nba_data.csv")
 
+# Compute average points per game by position
+avg_pts = nba_data.groupby('Pos')['PTS'].mean().reset_index()
 
+# Create bar chart
+chart = alt.Chart(avg_pts).mark_bar().encode(
+    x='Pos',
+    y='PTS',
+    color=alt.Color('Pos', legend=None)
+).properties(title='Media de puntos por posición')
+
+# Display chart in Streamlit app
+st.altair_chart(chart, use_container_width=True)
 
