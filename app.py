@@ -64,7 +64,7 @@ ax.set_ylabel("Número de jugadores")
 ax.set_title("Histograma de edad de los jugadores de la NBA")
 
 # Mostrar el gráfico si la casilla está marcada
-if st.checkbox("Mostrar gráfico de histograma de edad"):
+if st.checkbox("Mostrar gráfico de histograma de edad de los jugadores"):
     st.write(fig)
 
 st.sidebar.header('Selecciona los años, equipos y posiciones para analizar')
