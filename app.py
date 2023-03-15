@@ -32,6 +32,25 @@ st.markdown("""
 Datos obtenidos de: [Basketball-reference.com](https://www.basketball-reference.com/).
 """)
 
+nba_data = pd.read_csv("nba_data.csv")
+
+# Casilla de verificación para mostrar el gráfico
+show_plot = st.checkbox('Mostrar media de puntos por posición de todos los años')
+
+if show_plot:
+    # Compute average points per game by position
+    avg_pts = nba_data.groupby('Pos')['PTS'].mean().reset_index()
+
+    # Create bar chart
+    chart = alt.Chart(avg_pts).mark_bar().encode(
+        x='Pos',
+        y='PTS',
+        color=alt.Color('Pos', legend=None)
+    ).properties(title='Media de puntos por posición')
+
+    # Display chart in Streamlit app
+    st.altair_chart(chart, use_container_width=True)
+
 st.sidebar.header('Selecciona los años, equipos y posiciones para analizar')
 selected_year = st.sidebar.selectbox('Años', list(reversed(range(1950,2022))))
 
@@ -72,18 +91,5 @@ def filedownload(df):
 
 st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
 
-nba_data = pd.read_csv("nba_data.csv")
 
-# Compute average points per game by position
-avg_pts = nba_data.groupby('Pos')['PTS'].mean().reset_index()
-
-# Create bar chart
-chart = alt.Chart(avg_pts).mark_bar().encode(
-    x='Pos',
-    y='PTS',
-    color=alt.Color('Pos', legend=None)
-).properties(title='Media de puntos por posición')
-
-# Display chart in Streamlit app
-st.altair_chart(chart, use_container_width=True)
 
