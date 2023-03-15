@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 import base64
 import altair as alt
+import matplotlib.pyplot as plt
 
 # For more emojis code https://www.webfx.com/tools/emoji-cheat-sheet/
 st.set_page_config(page_title="NBA Stats", page_icon=":basketball:")
@@ -50,6 +51,21 @@ if show_plot:
 
     # Display chart in Streamlit app
     st.altair_chart(chart, use_container_width=True)
+
+# Calcular la media de los años
+mean_age = nba_data["Age"].mean()
+
+# Crear el gráfico de histograma
+fig, ax = plt.subplots()
+ax.hist(nba_data["Age"], bins=20)
+ax.axvline(mean_age, color='red', linestyle='dashed', linewidth=2)
+ax.set_xlabel("Edad")
+ax.set_ylabel("Número de jugadores")
+ax.set_title("Histograma de edad de los jugadores de la NBA")
+
+# Mostrar el gráfico si la casilla está marcada
+if st.checkbox("Mostrar gráfico de histograma de edad"):
+    st.write(fig)
 
 st.sidebar.header('Selecciona los años, equipos y posiciones para analizar')
 selected_year = st.sidebar.selectbox('Años', list(reversed(range(1950,2022))))
